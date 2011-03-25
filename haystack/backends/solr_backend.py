@@ -451,7 +451,7 @@ class SearchQuery(BaseSearchQuery):
             kwargs['highlight'] = self.highlight
         
         if self.facets:
-            kwargs['facets'] = list(self.facets)
+            kwargs['facets'] = ["{!ex=tag_%s}%s" % (f, f) for f in self.facets]
         
         if self.date_facets:
             kwargs['date_facets'] = self.date_facets
